@@ -6,6 +6,8 @@
 #include "base/base.h"
 #include "base/tensor.h"
 
+namespace op{
+
 enum class LayerType{
     Conv,
     Sigmoid
@@ -15,6 +17,12 @@ class BaseLayer{
     public:
     explicit BaseLayer(base::DeviceType device_type, LayerType layer_type,
                        base::DataType data_type, std::string layer_name = "");
+
+    virtual void set_input(int32_t index, const tensor::Tensor& input) = 0;
+
+    virtual void get_input(int32_t index) = 0;
+
+    virtual void get_output(int32_t index) = 0;
 
     protected:
         base::DeviceType device_type_;
@@ -37,4 +45,5 @@ class Layer : public BaseLayer{
     private:
     std::vector<torch::Tensor> inputs_;
     std::vector<torch::Tensor> outputs_;
+}
 }

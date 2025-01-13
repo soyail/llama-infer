@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include <cstdlib>
 namespace base{
     enum class DeviceType{
         DeviceUnknown = 0,
